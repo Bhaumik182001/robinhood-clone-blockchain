@@ -2,6 +2,8 @@ import React from 'react'
 import { AiOutlineSearch } from "react-icons/ai";
 import Image from 'next/image';
 import logo from '../assests/logo.png'
+import { useContext } from 'react';
+import { RobinhoodContext } from '../context/RobinhoodContext';
 
 
 const styles = {
@@ -16,11 +18,17 @@ const styles = {
     menuItem: 'cursor-pointer font-bold hover:text-green-500 duration-300',
 }
 
-const isAuthenticated = false;
-const formattedAccount = "DevUser";
+
 
 export const Header = () => {
 
+    const {
+        connectWallet,
+        signOut,
+        currentAccount,
+        isAuthenticated,
+        formattedAccount,
+    } = useContext(RobinhoodContext)
 
   return (
     <div className={styles.container}>
