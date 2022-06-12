@@ -34,7 +34,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 
-//Personal Note in order to run this apllication follow required steps:
+# Personal Note in order to run this apllication follow required steps:
 1. open terminal and type  yarn dev 
 2. open new terminal then cd studio then type sanity start
 
