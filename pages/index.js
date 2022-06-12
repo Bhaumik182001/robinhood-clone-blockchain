@@ -5,6 +5,9 @@ import PortfolioChart from '../components/PortfolioChart';
 import { BuyTokens } from '../components/BuyTokens';
 import { Notice } from '../components/Notice';
 import { Assests } from '../components/Assests';
+import axios from 'axios';
+import { useState, useContext } from 'react';
+import { RobinhoodContext } from '../context/RobinhoodContext';
 
 const styles = {
   wrapper: 'w-screen h-screen flex flex-col',
@@ -29,7 +32,11 @@ const styles = {
   moreOptions: 'cursor-pointer text-xl',
 }
 
-export default function Home() {
+export default function Home({coins}) {
+ 
+  const [myCoins] = useState([...coins.slice(0,15)])
+  const { balance } = useContext(RobinhoodContext)
+  
   return (
     <div className={styles.wrapper}>
       <Header />
@@ -38,7 +45,7 @@ export default function Home() {
 
         
         <div className={styles.portfolioAmountContainer}>
-          <div className={styles.portfolioAmount}>23 ETH</div>
+          <div className={styles.portfolioAmount}>{ balance}</div>
           <div className={styles.portfolioPercent}>
             +0.0008(+0.57%)
               <span className={styles.pastHour}>Past Hour</span>
@@ -68,10 +75,12 @@ export default function Home() {
           <div className={styles.ItemTitle}>Crypto Currencies</div>
          <BiDotsHorizontalRounded className={styles.moreOptions} />
         </div>
-        <Assests  coin={"BTC"} price = {0.89}/>
-        <Assests  coin={"SOL"} price = {0.21}/>
-        <Assests  coin={"ETH"} price = {0.01}/>
-        <Assests  coin={"USDC"} price = {0.90}/>
+        {myCoins.map(coin => {
+          let price = parseFloat(coin.price)
+          price = price.toFixed(2)
+
+          return <Assests key = {coin.uuid} coin= {coin} price = {price} />
+        })}
         <div className={styles.rightMainItem}>
           <div className={styles.ItemTitle}>Lists</div>
           <AiOutlinePlus className={styles.moreOptions} />
@@ -81,3 +90,42 @@ export default function Home() {
     </div>
   )
 }
+
+
+export const getStaticProps = async () => {
+const axiose = require("axios");
+
+const options = {
+  method: 'GET',
+  url: 'https://coinranking1.p.rapidapi.com/coins',
+  params: {
+    referenceCurrencyUuid: 'yhjMzLPhuIDl',
+    timePeriod: '24h',
+    'tiers[0]': '1',
+    orderBy: 'marketCap',
+    orderDirection: 'desc',
+    limit: '50',
+    offset: '0'
+  },
+  headers: {
+    
+    'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com',
+    'X-RapidAPI-Key': '24aebfe348msh81adad22fbacaefp15befejsn42b35fd8ecd2',
+  }
+};
+
+const res = await axios.request(options)
+  const coins = res.data.data.coins
+
+  return {
+    props: { coins },
+  }
+
+}
+  
+
+
+ 
+
+
+

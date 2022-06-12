@@ -22,3 +22,5 @@ const swapTokens = async (req, res) => {
         res.status(500).send({ message: 'error', data: error.message})
     }
 }
+
+export default swapTokens;

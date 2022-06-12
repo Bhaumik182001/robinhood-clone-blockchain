@@ -19,21 +19,22 @@ export const BuyTokens = () => {
   return (
     <form className={styles.formContainer}>
         <div className="flex h-full w-full flex-col items-center">
-            <select className={styles.select} value={coinSelect} onChange={e => setCoinSelection(e.target.value)}>
+            <select className={styles.select} value={coinSelect} onChange={e => setCoinSelect(e.target.value)}>
                 <option className={styles.options} value='BTC'>BTC</option>
+                <option className={styles.options} value='DOGE'>DOGE</option>
                 <option className={styles.options} value='ETH'>ETH</option>
                 <option className={styles.options} value='USDC'>USDC</option>
                 <option className={styles.options} value='SOL'>SOL</option>
             </select>
 
-            <select className={styles.select} value={coinSelect} onChange={e => setCoinSelection(e.target.value)}>
+            <select className={styles.select} value={toCoin} onChange={e => setToCoin(e.target.value)}>
                 <option className={styles.options} value='BTC'>BTC</option>
-                <option className={styles.options} value='ETH'>ETH</option>
+                <option className={styles.options} value='DOGE'>DOGE</option>
                 <option className={styles.options} value='USDC'>USDC</option>
                 <option className={styles.options} value='SOL'>SOL</option>
             </select>
-            <input placeholder='Amount...' className={styles.inputAmount} type="text" />
-            <button className={styles.noticeCTA} type="submit">Submit</button>
+            <input placeholder='Amount...' className={styles.inputAmount} type="text" value={amount} onChange={e => setAmount(e.target.value)}/>
+            <button className={styles.noticeCTA} type="button" disabled={!isAuthenticated} onClick ={() => mint()}>Submit</button>
         </div>
     </form>
   )
