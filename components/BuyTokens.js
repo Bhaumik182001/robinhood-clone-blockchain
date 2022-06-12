@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useContext} from 'react'
+import { RobinhoodContext } from '../context/RobinhoodContext'
+
 
 const styles = {
     inputAmount: 'w-1/2 flex items-center justify-center border border-white rounded-lg p-2 bg-transparent mt-6 text-white placeholder:text-white',
@@ -8,15 +10,27 @@ const styles = {
     noticeCTA: 'font-bold text-green-500 cursor-pointer mt-5',
 }
 
+
+
 export const BuyTokens = () => {
+  
+  const { isAuthenticated, setAmount, mint, setCoinSelect, coinSelect, amount, toCoin, setToCoin, } = useContext(RobinhoodContext)
+  
   return (
     <form className={styles.formContainer}>
         <div className="flex h-full w-full flex-col items-center">
-            <select className={styles.select}>
-                <option className={styles.options}>BTC</option>
-                <option className={styles.options}>ETH</option>
-                <option className={styles.options}>USDC</option>
-                <option className={styles.options}>SOL</option>
+            <select className={styles.select} value={coinSelect} onChange={e => setCoinSelection(e.target.value)}>
+                <option className={styles.options} value='BTC'>BTC</option>
+                <option className={styles.options} value='ETH'>ETH</option>
+                <option className={styles.options} value='USDC'>USDC</option>
+                <option className={styles.options} value='SOL'>SOL</option>
+            </select>
+
+            <select className={styles.select} value={coinSelect} onChange={e => setCoinSelection(e.target.value)}>
+                <option className={styles.options} value='BTC'>BTC</option>
+                <option className={styles.options} value='ETH'>ETH</option>
+                <option className={styles.options} value='USDC'>USDC</option>
+                <option className={styles.options} value='SOL'>SOL</option>
             </select>
             <input placeholder='Amount...' className={styles.inputAmount} type="text" />
             <button className={styles.noticeCTA} type="submit">Submit</button>

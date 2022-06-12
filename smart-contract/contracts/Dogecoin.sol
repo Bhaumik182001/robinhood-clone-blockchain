@@ -1,9 +1,9 @@
 pragma solidity ^0.8.0;
 
-import "@openzepplin/contracts/token/ERC20/ERC20.sol";
-import "@openzepplin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract Btc is ERC20, Ownable {
+contract Dogecoin is ERC20, Ownable {
     constructor() ERC20("Dogecoin", "DOGE"){
 
     }
@@ -12,7 +12,7 @@ contract Btc is ERC20, Ownable {
         _mint(to,amount);
     }
 
-    recieve() external payable{
+    receive() external payable{
         
     }
 }

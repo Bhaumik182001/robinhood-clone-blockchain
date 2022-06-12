@@ -3,8 +3,8 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract Btc is ERC20, Ownable {
-    constructor() ERC20("Bitcoin", "BTC"){
+contract Usdc is ERC20, Ownable {
+    constructor() ERC20("Usdc", "USDC"){
 
     }
 
@@ -13,6 +13,6 @@ contract Btc is ERC20, Ownable {
     }
 
     receive() external payable{
-
+        
     }
 }
