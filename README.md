@@ -39,3 +39,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 2. open new terminal then cd studio then type sanity start
 
 # yarn developed potential dapp runs on localhost/3000 and sanity decentralized database on localhost/3333
+
+# because of compatiblity issues with hardhat node was downgraded to version 16
